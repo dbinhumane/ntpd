@@ -1,1 +1,1 @@
-# ntpd
+# ntpd   lfskjdawo jfeivfaoklsedfna
