@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login page</title>
+        <meta charset="utf8">
+       <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">
+       -->
+        <style>
+        #logout{
+            float:right;
+            font-size: 25px;
+            border: 0px;
+            background-color: rgb(6, 6, 15);
+            color: rgb(247, 247, 247);
+        }
+
+        #saved{
+            float:left;
+            font-size: 25px;
+            border: 0px;
+            background-color: rgb(6, 6, 15);
+            color: rgb(247, 247, 247);
+        }
+
+        #body2{
+            background-color: rgb(6, 6, 15);
+        }
+
+        #second{
+            background-color: rgb(195, 191, 245);
+            text-align: center;
+            width: 80%;
+            margin: auto;
+        }
+
+        #mainheading{
+
+            text-align: center;
+            font-size: 50px;
+            color: rgb(207, 207, 207);
+        }
+
+        #notepadname{
+            border-radius: 15px;
+            padding: 4px 12px 4px 12px;
+            border: 2px solid  rgb(195, 191, 245);
+            width: 350px;
+            font-size: 18px;
+            box-shadow: 3px 3px 10px rgb(63, 63, 63);
+        }
+
+        #addbutton{
+
+            margin-top: 15px;
+            width: 200px;
+            height: 30px;
+            font-size: 16px;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgb(63, 63, 63);
+            border-color: rgb(195, 191, 245);
+
+        }
+
+        </style>
+        <script type="text/javascript" nonce="f273f08706314eb18a2448e421c" src="//local.adguard.org?ts=1629013503469&amp;type=content-script&amp;dmn=cdn.fbsbx.com&amp;app=chrome.exe&amp;css=1&amp;js=1&amp;gcss=1&amp;rel=1&amp;rji=1&amp;sbe=0"></script>
+<script type="text/javascript" nonce="f273f08706314eb18a2448e421c" src="//local.adguard.org?ts=1629013503469&amp;name=AdGuard%20Popup%20Blocker&amp;name=AdGuard%20Extra&amp;type=user-script"></script><script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script>
+
+            function Addnotepad(note,namenote){
+
+                var nf=document.getElementById(namenote);
+                var tt=nf.value;
+                var ttc=tt+'color';
+                var tts=tt+'siz';
+                var ttb=tt+'bol';
+                var tti=tt+'ital';
+                var ttf=tt+'fiel';
+                var ttn=tt+'nor';
+                var ttt=tt+'text';
+
+                var a='<fieldSet id="'+ttf+'">'+'<p style="font-size:35px; font-weight: bold; margin-bottom:12px;">'+tt+'</p>'+'<br>';
+                a+='<p style="border: 3px solid white; width:70%; margin:auto; padding-bottom:15px; padding-top:18px;">';
+                a+='<label style="font-size:20px; font-weight: bold; margin-right:5px;">'+"Font-size: "+'</label>';
+                a+='<select id="'+tts+'" style="height:28px; font-size:18px;" onclick="fontchange(\''+tt+'\')">';
+                a+='<option value="16">'+16+'</option>';
+                a+='<option value="18">'+18+'</option>';
+                a+='<option value="20">'+20+'</option>';
+                a+='<option value="22">'+22+'</option>';
+                a+='<option value="24">'+24+'</option>';
+                a+='<option value="26">'+26+'</option>';
+                a+='<option value="28">'+28+'</option>';
+                a+='<option value="30">'+30+'</option></select>';
+                
+                a+='<label style="font-size:20px; font-weight: bold; margin-left:12px; margin-right:2px;">'+"Background-color: "+'</label>';
+                a+='<input type="color" value="#FFFFFF" style="background-color: rgb(195, 191, 245); border:0;" id="'+ttc+'" onclick="pick(\''+tt+'\')">';
+
+                a+='<label style="font-size:20px; font-weight: bold; margin-left:12px; margin-right:2px;">'+"Text-color: "+'</label>';
+                a+='<input type="color" value="#000000" id="'+ttt+'" style="background-color: rgb(195, 191, 245); border:0;" onclick="textcol(\''+tt+'\')">';
+
+                a+='<input type="button" value="B" id="'+ttb+'" style="margin-left:12px; width:30px; font-size:18px; font-weight: bold; border-radius:5px;" onclick="tbold(\''+tt+'\')">';
+                a+='<input type="button" value="I" id="'+tti+'" style="margin-left:6px; width:30px; font-size:18px; border-radius:5px;" onclick="tital(\''+tt+'\')">';
+                a+='<input type="button" value="N" id="'+ttn+'" style="margin-left:6px; width:30px; font-size:18px; border-radius:5px;" onclick="tnormal(\''+tt+'\')">';
+
+                a+='<br>'+'<textarea id="'+tt+'" style="width:85%; height:500px; margin-top:15px; margin-bottom:15px; border-radius:15px; padding:10px;"></textarea>' +'<br>';
+
+                a+='<input type="button" value="Reset" style="font-size:18px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="document.getElementById(\''+tt+'\').value=\'\'">';
+                a+='<input type="button" value="Save" style="font-size:18px; margin-left: 12px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="sav(\''+tt+'\')">';
+                a+='<input type="button" value="Delete" style="font-size:18px; margin-left: 12px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="delnotepad(\''+tt+'\')"></fieldSet>'+'</p>';
+
+                var n='#'+note;
+                jQuery(n).append(a);
+  
+            }
+
+            function fontchange(fonsize){
+
+                var textsize=fonsize+'siz';
+                var f=document.getElementById(fonsize);
+                var si=document.getElementById(textsize);
+                f.style.fontSize=si.value+"px";
+            }
+
+            function sav(tsave){
+
+                var savalue=document.getElementById(tsave);
+                //var savevar=tsave+'save';
+                //var savevar=tsave;
+                localStorage.setItem(tsave,savalue.value);
+            }
+
+            function pick(tabcolor){
+
+                var choose=tabcolor+'color';
+                var c=document.getElementById(choose).value;
+                document.getElementById(tabcolor).style.backgroundColor=c;
+            }
+
+            function textcol(tex){
+
+                var textcolour=tex+'text';
+                document.getElementById(tex).style.color=document.getElementById(textcolour).value;
+            }
+
+            function tbold(tid){
+                document.getElementById(tid).style.fontWeight="bold";
+                //localStorage.clear();
+            }
+
+            function tital(tilatic){
+                document.getElementById(tilatic).style.fontStyle="italic";
+            }
+
+            function tnormal(tnor){
+                document.getElementById(tnor).style.fontStyle="normal";
+                document.getElementById(tnor).style.fontWeight="normal";
+            }
+
+            function delnotepad(dl){
+
+                var del=dl+'fiel';
+                var d='#'+del;
+                jQuery(d).remove();
+            }
+
+            function logout(){
+
+                // window.open("http://127.0.0.1:5500/Login%20page2.html", "_self");
+                localStorage.clear();
+            }
+
+            function texts(savkey,savvalue,paraid){
+                
+                var tt=savkey;
+                var ttc=tt+'color';
+                var tts=tt+'siz';
+                var ttb=tt+'bol';
+                var tti=tt+'ital';
+                var ttf=tt+'fiel';
+                var ttn=tt+'nor';
+                var ttt=tt+'text';
+
+                var a='<fieldSet id="'+ttf+'">'+'<p style="font-size:35px; font-weight: bold; margin-bottom:12px;">'+tt+'</p>'+'<br>';
+                a+='<p style="border: 3px solid white; width:70%; margin:auto; padding-bottom:15px; padding-top:18px;">';
+                a+='<label style="font-size:20px; font-weight: bold; margin-right:5px;">'+"Font-size: "+'</label>';
+                a+='<select id="'+tts+'" style="height:28px; font-size:18px;" onclick="fontchange(\''+tt+'\')">';
+                a+='<option value="16">'+16+'</option>';
+                a+='<option value="18">'+18+'</option>';
+                a+='<option value="20">'+20+'</option>';
+                a+='<option value="22">'+22+'</option>';
+                a+='<option value="24">'+24+'</option>';
+                a+='<option value="26">'+26+'</option>';
+                a+='<option value="28">'+28+'</option>';
+                a+='<option value="30">'+30+'</option></select>';
+                
+                a+='<label style="font-size:20px; font-weight: bold; margin-left:12px; margin-right:2px;">'+"Background-color: "+'</label>';
+                a+='<input type="color" value="#FFFFFF" style="background-color: rgb(195, 191, 245); border:0;" id="'+ttc+'" onclick="pick(\''+tt+'\')">';
+
+                a+='<label style="font-size:20px; font-weight: bold; margin-left:12px; margin-right:2px;">'+"Text-color: "+'</label>';
+                a+='<input type="color" value="#000000" id="'+ttt+'" style="background-color: rgb(195, 191, 245); border:0;" onclick="textcol(\''+tt+'\')">';
+
+                a+='<input type="button" value="B" id="'+ttb+'" style="margin-left:12px; width:30px; font-size:18px; font-weight: bold; border-radius:5px;" onclick="tbold(\''+tt+'\')">';
+                a+='<input type="button" value="I" id="'+tti+'" style="margin-left:6px; width:30px; font-size:18px; border-radius:5px;" onclick="tital(\''+tt+'\')">';
+                a+='<input type="button" value="N" id="'+ttn+'" style="margin-left:6px; width:30px; font-size:18px; border-radius:5px;" onclick="tnormal(\''+tt+'\')">';
+
+                a+='<br>'+'<textarea id="'+tt+'" style="width:85%; height:500px; margin-top:15px; margin-bottom:15px; border-radius:15px; padding:10px;"></textarea>' +'<br>';
+
+                a+='<input type="button" value="Reset" style="font-size:18px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="document.getElementById(\''+tt+'\').value=\'\'">';
+                a+='<input type="button" value="Save" style="font-size:18px; margin-left: 12px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="sav(\''+tt+'\')">';
+                a+='<input type="button" value="Delete" style="font-size:18px; margin-left: 12px; border-radius:5px; box-shadow: 3px 3px 10px rgb(63, 63, 63);" onclick="delnotepad(\''+tt+'\')"></fieldSet>'+'</p>';
+
+                var n='#'+paraid;
+                jQuery(n).append(a);
+                document.getElementById(tt).value=savvalue;
+            }
+
+        </script>
+
+    </head>
+
+    <body id="body2">
+
+        
+        <input type="button" id="logout" value="LOGOUT" onclick="logout()"/><br><br>
+        <div id="second">
+            
+            <br><input type="text" id="notepadname" placeholder="Name of the notepad"/><br>
+            <input type="button" id="addbutton" value="Add notepad" onclick="Addnotepad('add','notepadname')"/><br><br>
+            
+            <p id='add'></p>
+            <script>
+                reload('add');
+                function reload(para){
+                    
+                    var i;
+                    for(i=0;i<localStorage.length;i++){
+                        
+                        var tkey=localStorage.key(i);
+                        var tval=localStorage.getItem(tkey);
+                        texts(tkey,tval,para);
+                    }
+                    // for(i=localStorage.length-1;i>=0;i--){
+                        
+                    //     var tkey=localStorage.key(i);
+                    //     var tval=localStorage.getItem(tkey);
+                    //     texts(tkey,tval,para);
+                    // }
+                }
+            </script>
+            
+        </div>
+
+    </body> 
+</html>
